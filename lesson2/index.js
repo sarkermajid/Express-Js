@@ -3,6 +3,17 @@ const app = express();
 const hostname = '127.0.0.1';
 const PORT = 3000;
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+app.post('/user',(req,res)=>{
+    const name = req.body.name;
+    const age = req.body.age;
+    res.send(`Welcome ${name} and You are ${age}`);
+});
+
 // query parameter
 // app.get('/',(req,res)=>{
 //     const name = req.query.name;
@@ -13,13 +24,13 @@ const PORT = 3000;
 
 
 // route parameter
-app.get('/studentName/:name/studentId/:id/studentAge/:age',(req,res)=>{
-   const name = req.params.name;
-   const id = req.params.id;
-   const age = req.params.age;
-   res.send(`<h1>Student Name is : ${name} , Id is : ${id} & Age is : ${age}</h1>`);
-   res.end();
-})
+// app.get('/studentName/:name/studentId/:id/studentAge/:age',(req,res)=>{
+//    const name = req.params.name;
+//    const id = req.params.id;
+//    const age = req.params.age;
+//    res.send(`<h1>Student Name is : ${name} , Id is : ${id} & Age is : ${age}</h1>`);
+//    res.end();
+// })
 
 app.listen(PORT,()=>{
     console.log(`server is running at http://${hostname}:${PORT}`);
