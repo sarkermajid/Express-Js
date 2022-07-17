@@ -14,6 +14,18 @@ app.post('/user',(req,res)=>{
     res.send(`Welcome ${name} and You are ${age}`);
 });
 
+
+app.get('/register',(req,res)=>{
+    res.sendFile(__dirname + '/register.html');
+})
+
+app.post('/register',(req,res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+    res.send(`<h2>User Email : ${email} and Password : ${password}</h2>`);
+    res.end();
+})
+
 // query parameter
 // app.get('/',(req,res)=>{
 //     const name = req.query.name;
